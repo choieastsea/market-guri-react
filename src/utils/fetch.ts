@@ -9,3 +9,10 @@ export const AxiosGet = () => {
   };
   return axios.create(axiosConfig);
 };
+export const AxiosPost = () => {
+  const axiosConfig: AxiosRequestConfig = {
+    baseURL: BASE_URL,
+    method: 'POST',
+  };
+  return axios.create(axiosConfig);
+};

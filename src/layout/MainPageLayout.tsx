@@ -5,7 +5,7 @@ export const MainPageLayout = () => {
   return (
     <Container>
       {/* title */}
-      <Typography variant="h2">MARKET GURI</Typography>
+      <Typography variant="h2" gutterBottom>MARKET GURI</Typography>
       {/* nav bar */}
       {/* content */}
       <Outlet />

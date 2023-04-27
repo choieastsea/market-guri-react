@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Link, Typography } from '@mui/material';
 import { useQuery } from 'react-query';
 import { ItemCard } from '../components/ItemCard';
 import { AxiosGet } from '../utils/fetch';
@@ -35,6 +35,9 @@ export const MainPage = () => {
   }
   return (
     <Container>
+      <Typography gutterBottom>
+        <Link href="login">로그인</Link>
+      </Typography>
       <Grid container spacing={2}>
         {data?.map((item) => (
           <Grid item xs={12} md={4} key={item.item_id}>

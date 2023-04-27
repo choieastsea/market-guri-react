@@ -4,3 +4,30 @@ export type Item = {
   price: number;
   stock_count: number;
 };
+
+export type LoginInfo = {
+  username: string;
+  password: string;
+};
+export const LoginInit: LoginInfo = {
+  username: '',
+  password: '',
+};
+export type SignupInfo = {
+  username: string;
+  password: string;
+  passwordConfirm: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  address: string;
+};
+export const SignupInit: SignupInfo = {
+  username: '',
+  password: '',
+  passwordConfirm: '',
+  first_name: '',
+  last_name: '',
+  phone_number: '',
+  address: '',
+};
