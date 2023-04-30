@@ -17,16 +17,12 @@ export const SignupPage = () => {
     }
     try {
       const response = await AxiosPost().post('/user/signup/', {
-        user: {
-          username,
-          password,
-          first_name,
-          last_name,
-        },
-        profile: {
-          phone_number,
-          address,
-        },
+        username,
+        password,
+        first_name,
+        last_name,
+        phone_number,
+        address,
       });
       console.log(response);
       if (response.status === 201) {
