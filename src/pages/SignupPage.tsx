@@ -16,14 +16,17 @@ export const SignupPage = () => {
       return;
     }
     try {
-      const response = await AxiosPost().post('/user/signup/', {
-        username,
-        password,
-        first_name,
-        last_name,
-        phone_number,
-        address,
-      });
+      const response = await AxiosPost().post(
+        '/user/signup/',
+        {
+          username,
+          password,
+          first_name,
+          last_name,
+          phone_number,
+          address,
+        }
+      );
       console.log(response);
       if (response.status === 201) {
         alert('회원 가입 성공');

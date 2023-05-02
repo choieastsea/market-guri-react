@@ -3,8 +3,29 @@ import { useQuery } from 'react-query';
 import { ItemCard } from '../components/ItemCard';
 import { AxiosGet } from '../utils/fetch';
 import { Item } from '../utils/model';
+import { useRecoilValue } from 'recoil';
+import { isAuthenticated } from '../recoil/recoil';
+import { useEffect } from 'react';
+import { logout } from '../utils/session';
+import { useNavigate } from 'react-router-dom';
 
 export const MainPage = () => {
+  // 인증 여부를 확인
+  const navigate = useNavigate();
+  const authenticated = useRecoilValue<boolean>(isAuthenticated);
+  const onClickLogout = async () => {
+    try {
+      await logout();
+      alert('성공적으로 로그아웃되었습니다.');
+      navigate(0);
+    } catch (e) {
+      alert(e);
+    }
+  };
+  useEffect(() => {
+    console.log(authenticated);
+  }, [authenticated]);
+
   // item 리스트를 가져온다
   const { isLoading, error, data } = useQuery<Item[]>(
     'todos',
@@ -36,7 +57,11 @@ export const MainPage = () => {
   return (
     <Container>
       <Typography gutterBottom>
-        <Link href="login">로그인</Link>
+        {authenticated ? (
+          <Link onClick={onClickLogout}>로그아웃</Link>
+        ) : (
+          <Link href="login">로그인</Link>
+        )}
       </Typography>
       <Grid container spacing={2}>
         {data?.map((item) => (

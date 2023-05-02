@@ -4,8 +4,22 @@ import { MainPage } from './pages/MainPage';
 import { LoginPage } from './pages/LoginPage';
 import { NotFoundPage } from './pages/404';
 import { SignupPage } from './pages/SignupPage';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { isAuthenticated } from './recoil/recoil';
+import { AxiosGet } from './utils/fetch';
 
 function App() {
+  const setAuthenticated = useSetRecoilState(isAuthenticated);
+  const getSession = async () => {
+    try {
+      const response = await AxiosGet().get('user/session/');
+      setAuthenticated(response.data?.detail);
+    } catch (e) {}
+  };
+  useEffect(() => {
+    getSession();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
