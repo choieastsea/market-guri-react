@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { isAuthenticated } from './recoil/recoil';
 import { AxiosGet } from './utils/fetch';
+import { ItemPage } from './pages/ItemPage';
 
 function App() {
   const setAuthenticated = useSetRecoilState(isAuthenticated);
@@ -27,6 +28,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/detail" element={<ItemPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

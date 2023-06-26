@@ -4,7 +4,33 @@ export type Item = {
   price: number;
   stock_count: number;
 };
-
+export type ItemResult = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Item[];
+};
+export type ItemDetail = {
+  item_id: number;
+  name: string;
+  price: number;
+  stock_count: number;
+  description: string;
+};
+export type ItemQNA = {
+  id: number;
+  question: Question;
+  answer: string;
+  dated_created: string;
+};
+export type Question = {
+  id: number;
+  user: string;
+  title: string;
+  content: string;
+  date_created: string;
+  item: number;
+};
 export type LoginInfo = {
   username: string;
   password: string;
