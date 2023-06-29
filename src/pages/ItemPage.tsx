@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AxiosGet, AxiosPost } from '../utils/fetch';
 import {
   Box,
@@ -33,6 +33,7 @@ function TabPanel(props: any) {
 }
 
 export const ItemPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const item_code = searchParams.get('item_code');
@@ -64,14 +65,23 @@ export const ItemPage = () => {
     //itemCode & itemCount
     try {
       const { data } = await AxiosPost().post('/cart/basic/', {
-        item: { item_id: item_code },
+        item: item_code,
         amount: itemCount,
       });
       console.log(data);
+      const moveToCart = window.confirm(
+        `장바구니에 ${itemCount}개 추가 되었습니다. 장바구니로 이동하시겠습니까?`
+      );
+      if (moveToCart) {
+        navigate('/cart');
+      }
     } catch (e) {
       if (e instanceof AxiosError) {
         if (e?.response?.status === 403) {
-          alert('로그인을 수행해주세요');
+          const moveToLogin = window.confirm('권한이 없습니다. 로그인 페이지로 넘어가겠습니까?');
+          if (moveToLogin) {
+            navigate('/login');
+          }
         }
       } else {
         alert('서버에 오류가 발생했습니다');

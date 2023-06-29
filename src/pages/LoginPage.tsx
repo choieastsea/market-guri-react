@@ -25,7 +25,7 @@ export const LoginPage = () => {
         // csrf token 발급
         setAuthenticated(true);
         alert('로그인 성공');
-        navigate('/');
+        navigate(-1);
       }
     } catch (e) {
       if (e instanceof AxiosError) alert(e.response?.data?.detail);

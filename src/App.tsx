@@ -9,6 +9,7 @@ import { useSetRecoilState } from 'recoil';
 import { isAuthenticated } from './recoil/recoil';
 import { AxiosGet } from './utils/fetch';
 import { ItemPage } from './pages/ItemPage';
+import { CartPage } from './pages/CartPage';
 
 function App() {
   const setAuthenticated = useSetRecoilState(isAuthenticated);
@@ -21,6 +22,7 @@ function App() {
   useEffect(() => {
     getSession();
   }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,6 +31,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/detail" element={<ItemPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

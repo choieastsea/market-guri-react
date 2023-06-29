@@ -25,3 +25,8 @@ export const AxiosPost = () => {
   });
   return customAxios;
 };
+
+export const getCSRF = async () => {
+  const { data } = await AxiosGet().get('/user/get_csrf/');
+  console.log(data);
+};

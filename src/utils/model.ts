@@ -57,3 +57,12 @@ export const SignupInit: SignupInfo = {
   phone_number: '',
   address: '',
 };
+export type CartInfo = {
+  id: number;
+  amount: number;
+  date_created: string;
+  is_available_now: boolean;
+  item: ItemDetail;
+  total_price: number;
+  user: string;
+};
